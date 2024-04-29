@@ -42,15 +42,15 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", "Escape and clear hlsearch")
 
 --Make 'x' key not copy to clipboard when depeting a character
 map({ "n", "v" }, "x", function()
-  if vim.fn.col(".") == 1 then
-    local line = vim.fn.getline(".")
-    if line:match("^%s*$") then
-      vim.api.nvim_feedkeys("dd", "n", false)
-      vim.api.nvim_feedkeys("$", "n", false)
-    else
-      vim.api.nvim_feedkeys('"_x', "n", false)
-    end
-  else
-    vim.api.nvim_feedkeys('"_x', "n", false)
-  end
+	if vim.fn.col(".") == 1 then
+		local line = vim.fn.getline(".")
+		if line:match("^%s*$") then
+			vim.api.nvim_feedkeys("dd", "n", false)
+			vim.api.nvim_feedkeys("$", "n", false)
+		else
+			vim.api.nvim_feedkeys('"_x', "n", false)
+		end
+	else
+		vim.api.nvim_feedkeys('"_x', "n", false)
+	end
 end, "Delete character without yanking it.")

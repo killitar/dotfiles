@@ -37,10 +37,10 @@ opt.splitright = true
 opt.smartcase = true
 opt.ignorecase = true
 
-opt.pumheight = 10   -- Height of the pop up menu
-opt.winminwidth = 5  -- Minimum window width
+opt.pumheight = 10 -- Height of the pop up menu
+opt.winminwidth = 5 -- Minimum window width
 
-opt.laststatus = 3   -- global statusline
+opt.laststatus = 3 -- global statusline
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.cursorline = true
 opt.signcolumn = "yes"
@@ -67,34 +67,34 @@ opt.wildmenu = true
 opt.wildmode = "list:longest"
 
 opt.langmap =
-"ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+	"ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 opt.spelllang = { "en", "ru" }
 
 --Fillchars
 opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  -- fold = "⸱",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = "~",
+	foldopen = "",
+	foldclose = "",
+	-- fold = "⸱",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = "~",
 }
 
 vim.g.markdown_recommended_style = 0
 
 --clipboard wsl
 if vim.fn.has("wsl") == 1 then
-  vim.g.clipboard = {
-    name = "win32yank-wsl",
-    copy = {
-      ["+"] = "clip.exe",
-      ["*"] = "clip.exe"
-    },
-    paste = {
-      ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
-    },
-    cache_enable = 0,
-  }
+	vim.g.clipboard = {
+		name = "win32yank-wsl",
+		copy = {
+			["+"] = "clip.exe",
+			["*"] = "clip.exe",
+		},
+		paste = {
+			["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+			["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		},
+		cache_enable = 0,
+	}
 end
