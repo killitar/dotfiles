@@ -1,0 +1,208 @@
+return {
+  {
+    "rebelot/heirline.nvim",
+    enabled = false,
+    event = { "VeryLazy" },
+    config = function(_, opts)
+      local conditions = require("heirline.conditions")
+      local utils = require("heirline.utils")
+      local colors = require("solarized-osaka.colors").setup()
+
+      local sep_section_left = ""
+      local sep_section_right = ""
+      local sep_component_left = ""
+      local sep_component_right = ""
+
+      local Align = { provider = "%=" }
+      local Space = { provider = " " }
+
+      local Mode = {
+        init = function(self)
+          self.mode = vim.fn.mode(1)
+        end,
+        static = {
+          mode_names = {
+            ["n"] = "NORMAL",
+            ["no"] = "O-PENDING",
+            ["nov"] = "O-PENDING",
+            ["noV"] = "O-PENDING",
+            ["no\22"] = "O-PENDING",
+            ["niI"] = "NORMAL",
+            ["niR"] = "NORMAL",
+            ["niV"] = "NORMAL",
+            ["nt"] = "NORMAL",
+            ["ntT"] = "NORMAL",
+            ["v"] = "VISUAL",
+            ["vs"] = "VISUAL",
+            ["V"] = "V-LINE",
+            ["Vs"] = "V-LINE",
+            ["\22"] = "V-BLOCK",
+            ["\22s"] = "V-BLOCK",
+            ["s"] = "SELECT",
+            ["S"] = "S-LINE",
+            ["\19"] = "S-BLOCK",
+            ["i"] = "INSERT",
+            ["ic"] = "INSERT",
+            ["ix"] = "INSERT",
+            ["R"] = "REPLACE",
+            ["Rc"] = "REPLACE",
+            ["Rx"] = "REPLACE",
+            ["Rv"] = "V-REPLACE",
+            ["Rvc"] = "V-REPLACE",
+            ["Rvx"] = "V-REPLACE",
+            ["c"] = "COMMAND",
+            ["cv"] = "EX",
+            ["ce"] = "EX",
+            ["r"] = "REPLACE",
+            ["rm"] = "MORE",
+            ["r?"] = "CONFIRM",
+            ["!"] = "SHELL",
+            ["t"] = "TERMINAL",
+          },
+        },
+        update = {
+          "ModeChanged",
+          pattern = "*:*",
+          callback = vim.schedule_wrap(function()
+            vim.cmd("redrawstatus")
+          end),
+        },
+
+        hl = function(self)
+          local color = self:mode_color()
+          return { bg = color, fg = "black", bold = true }
+        end,
+
+        {
+          provider = function(self)
+            return " " .. self.mode_names[self.mode] .. " "
+          end,
+        },
+        {
+          provider = sep_section_left,
+          hl = function(self)
+            local color = self:mode_color()
+            return { fg = color, bg = "bg" }
+          end,
+        },
+      }
+
+      local Git = {
+        condition = conditions.is_git_repo,
+
+        init = function(self)
+          self.status_dict = vim.b.gitsigns_status_dict
+          self.has_changes = self.status_dict.added ~= 0
+            or self.status_dict.removed ~= 0
+            or self.status_dict.changed ~= 0
+        end,
+
+        hl = { fg = "orange", bg = "bg" },
+
+        { -- git branch name
+          provider = function(self)
+            return " " .. " " .. self.status_dict.head
+          end,
+          hl = { bold = true },
+        },
+        -- You could handle delimiters, icons and counts similar to Diagnostics
+        {
+          condition = function(self)
+            return self.has_changes
+          end,
+          provider = "(",
+        },
+        {
+          provider = function(self)
+            local count = self.status_dict.added or 0
+            return count > 0 and ("+" .. count)
+          end,
+          hl = { fg = utils.get_highlight("DiffAdd").fg },
+        },
+        {
+          provider = function(self)
+            local count = self.status_dict.removed or 0
+            return count > 0 and ("-" .. count)
+          end,
+          hl = { fg = utils.get_highlight("DiffDelete").fg },
+        },
+        {
+          provider = function(self)
+            local count = self.status_dict.changed or 0
+            return count > 0 and ("~" .. count)
+          end,
+          hl = { fg = utils.get_highlight("DiffChange").fg },
+        },
+        {
+          condition = function(self)
+            return self.has_changes
+          end,
+          provider = ")",
+        },
+      }
+
+      local FileName = {
+        init = function(self)
+          self.filename = vim.api.nvim_buf_get_name(0)
+        end,
+        hl = { bg = "bg" },
+        {
+          provider = "%t ",
+        },
+        {
+          condition = function()
+            return vim.bo.modified
+          end,
+          provider = "[+]",
+          hl = { fg = "green" },
+        },
+        {
+          condition = function()
+            return not vim.bo.modifiable or vim.bo.readonly
+          end,
+          provider = "",
+          hl = { fg = "orange" },
+        },
+      }
+
+      local DefaultStatusLine = {
+        Mode,
+        Git,
+        { Space, hl = { bg = "bg" } },
+        FileName,
+        { Align, hl = { bg = "bg" } },
+      }
+
+      local StatusLines = {
+        DefaultStatusLine,
+
+        static = {
+          mode_colors_map = {
+            n = "blue",
+            i = "green",
+            v = "magenta",
+            V = "magenta",
+            ["\22"] = "blue",
+            c = "blue",
+            s = "magenta",
+            S = "magenta",
+            ["\19"] = "magenta",
+            R = "red",
+            r = "red",
+            ["!"] = "red",
+            t = "red",
+          },
+          mode_color = function(self)
+            local mode = conditions.is_active() and vim.fn.mode() or "n"
+            return self.mode_colors_map[mode]
+          end,
+        },
+      }
+
+      require("heirline").setup({
+        statusline = StatusLines,
+        opts = { colors = colors },
+      })
+    end,
+  },
+}
