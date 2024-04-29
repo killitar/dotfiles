@@ -5,22 +5,18 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 --clipboard
 opt.clipboard = { "unnamed", "unnamedplus" }
 
+opt.list = false --set true if you want visible whitespace characters
+
 --File encoding
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
-opt.fileformats = "unix,mac,dos"
-
--- opt.list = true
 
 -- Indent options
 opt.shiftwidth = 2
 opt.tabstop = 2
 opt.expandtab = true
 opt.smartindent = true
-opt.smarttab = true
-opt.breakindent = true
-
-opt.backspace = "indent,eol,start"
+opt.shiftround = true
 
 --Context
 opt.scrolloff = 4
@@ -48,32 +44,27 @@ opt.laststatus = 3   -- global statusline
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.cursorline = true
 opt.signcolumn = "yes"
-opt.cursorcolumn = false
 opt.wrap = false
 opt.title = false
 opt.backup = false
-opt.backupskip = "/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim"
 opt.writebackup = false
-opt.breakat = [[\ \	;:,!?]]
-opt.breakindentopt = "shift:2,min:20"
+opt.swapfile = false
 opt.termguicolors = true
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 
 opt.formatoptions = "1jcroql"
 opt.grepformat = "%f:%l:%c:%m"
-opt.grepprg = "rg --hidden --vimgrep --smart-case --"
-opt.history = 2000
+opt.grepprg = "rg --vimgrep --smart-case"
 opt.completeopt = "menu,menuone,noselect"
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 
 opt.timeoutlen = 300
 
 opt.undofile = true
-opt.whichwrap = "h,l,<,>,[,],~"
+opt.undolevels = 10000
 
-opt.path:append({ "**" })
-opt.wildignore =
-".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**"
+opt.wildmenu = true
+opt.wildmode = "list:longest"
 
 opt.langmap =
 "ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
@@ -91,10 +82,6 @@ opt.fillchars = {
 }
 
 vim.g.markdown_recommended_style = 0
-
---Undercurl
-vim.cmd([[let &t_Cs = "\e[4:3m"]])
-vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 --clipboard wsl
 if vim.fn.has("wsl") == 1 then
