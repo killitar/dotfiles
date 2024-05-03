@@ -12,7 +12,6 @@ return {
 			astro = { "eslint_d" },
 			svelte = { "eslint_d" },
 			vue = { "eslint_d" },
-			sh = { "shellcheck" },
 			python = { "ruff", "mypy" },
 		}
 
