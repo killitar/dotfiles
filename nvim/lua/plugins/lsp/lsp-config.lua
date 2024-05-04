@@ -86,26 +86,7 @@ return {
 					telemetry = { enable = false },
 				},
 			},
-			tsserver = {
-				plugins = {
-					{
-						name = "@vue/typescript-plugin",
-						location = require("mason-registry").get_package("vue-language-server"):get_install_path()
-							.. "/node_modules/@vue/language-server"
-							.. "/node_modules/@vue/typescript-plugin",
-						languages = { "javascript", "typescript", "vue" },
-					},
-				},
-				filetypes = {
-					"javascript",
-					"javascriptreact",
-					"javascript.jsx",
-					"typescript",
-					"typescriptreact",
-					"typescript.tsx",
-					"vue",
-				},
-			},
+			vtsls = {},
 			pyright = {},
 
 			volar = {},
@@ -127,8 +108,28 @@ return {
 					capabilities = capabilities,
 					on_attach = on_attach,
 					settings = servers[server_name],
-					init_options = servers[server_name],
-					filetypes = servers[server_name].filetypes,
+				})
+			end,
+			["vtsls"] = function()
+				require("lspconfig").vtsls.setup({
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+					settings = {
+						vtsls = {
+							tsserver = {
+								globalPlugins = {
+									{
+										name = "@vue/typescript-plugin",
+										location = require("mason-registry")
+											.get_package("vue-language-server")
+											:get_install_path() .. "/node_modules/@vue/language-server",
+										languages = { "vue" },
+										configNamespace = "typescript",
+										enableForWorkspaceTypeScriptVersions = true,
+									},
+								},
+							},
+						},
+					},
 				})
 			end,
 		})
