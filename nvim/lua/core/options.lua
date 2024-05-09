@@ -13,6 +13,7 @@ opt.fileencoding = "utf-8"
 
 -- Indent options
 opt.shiftwidth = 2
+opt.softtabstop = 2
 opt.tabstop = 2
 opt.expandtab = true
 opt.smartindent = true
