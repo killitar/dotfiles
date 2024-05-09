@@ -36,6 +36,7 @@ return {
 				prompt_prefix = icons.Search,
 				selection_caret = icons.Separator,
 				layout_config = { prompt_position = "top" },
+				path_display = { "filename_first" },
 				file_ignore_patterns = {
 					"lazy-lock.json",
 					".git/",
