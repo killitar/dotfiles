@@ -34,6 +34,7 @@ return {
 			"vue",
 			"svelte",
 			"astro",
+			"prisma",
 		},
 	},
 	config = function(_, opts)
