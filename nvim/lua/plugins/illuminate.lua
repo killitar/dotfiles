@@ -26,6 +26,7 @@ return {
 			"toggleterm",
 			"lazyterm",
 			"minifiles",
+			"TelescopePrompt",
 		},
 	},
 	config = function(_, opts)
