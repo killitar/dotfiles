@@ -96,6 +96,7 @@ return {
 			emmet_language_server = {},
 			cssls = {},
 			tailwindcss = {},
+			prismals = {},
 		}
 
 		mason_lspconfig.setup({
