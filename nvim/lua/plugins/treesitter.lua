@@ -35,6 +35,7 @@ return {
 			"svelte",
 			"astro",
 			"prisma",
+			"dockerfile",
 		},
 	},
 	config = function(_, opts)
