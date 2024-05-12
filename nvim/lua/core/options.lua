@@ -65,7 +65,7 @@ opt.undofile = true
 opt.undolevels = 10000
 
 opt.wildmenu = true
-opt.wildmode = "list:longest"
+opt.wildmode = "longest:full,full"
 
 opt.langmap =
 	"ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
