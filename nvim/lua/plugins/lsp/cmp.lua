@@ -90,7 +90,6 @@ return {
 					border = "rounded",
 					winhighlight = "Normal:CmpPmenu,CursorLine:CursorLine,Search:None",
 					-- winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:None",
-					scrollbar = false,
 				},
 			},
 
