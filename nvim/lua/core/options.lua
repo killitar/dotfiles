@@ -69,7 +69,7 @@ opt.wildmode = "longest:full,full"
 
 opt.langmap =
 	"ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
-opt.spelllang = { "en", "ru" }
+opt.spelllang = { "en" }
 
 --Fillchars
 opt.fillchars = {
