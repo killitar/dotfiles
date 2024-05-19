@@ -25,13 +25,10 @@ return {
 				},
 				view = "mini",
 			},
-			{
-				filter = {
-					event = "notify",
-					find = "No information available",
-				},
-				skip = true,
-			},
+			{ filter = {
+				event = "notify",
+				find = "No information available",
+			}, skip = true },
 			{
 				filter = {
 					event = "lsp",
