@@ -3,7 +3,7 @@ local opt = vim.opt
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 --clipboard
-opt.clipboard = { "unnamed", "unnamedplus" }
+opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 
 opt.list = false --set true if you want visible whitespace characters
 
