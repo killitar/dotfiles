@@ -1,6 +1,6 @@
 # Miroslav's dotfiles
 
-This is my configs file of neovim and shell, this config is designed primarily for coding. As such, it has a lot of LSP and syntax plugins. I have it configured mainly for web development
+This is my dotfiles 
 
 ## Neovim setup
 
@@ -8,7 +8,7 @@ This is my configs file of neovim and shell, this config is designed primarily f
 
 ### Requirements
 
-- Neovim >= **0.9.0**
+- Neovim >= **0.10**
 - Git >= **2.19.0**
 - npm
 - [Nerd Font](https://www.nerdfonts.com/)(v3.0 or greater) **need to display icons**
