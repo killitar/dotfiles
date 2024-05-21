@@ -2,6 +2,8 @@ local opt = vim.opt
 
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
+vim.g.deprecation_warnings = false -- hide deprecation_warnings
+
 --clipboard
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 
@@ -50,7 +52,6 @@ opt.title = false
 opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
-opt.termguicolors = true
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 
 opt.formatoptions = "1jcroql"
@@ -81,6 +82,8 @@ opt.fillchars = {
 	diff = "╱",
 	eob = "~",
 }
+
+opt.smoothscroll = true
 
 vim.g.markdown_recommended_style = 0
 
