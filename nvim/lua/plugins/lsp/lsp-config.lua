@@ -37,14 +37,13 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-		local on_attach = function(_, bufnr)
+		local on_attach = function(client, bufnr)
 			local lsp_map = require("helpers.keys").lsp_map
 
 			lsp_map("gI", vim.lsp.buf.implementation, bufnr, "Goto Implementation")
 			lsp_map("gD", vim.lsp.buf.declaration, bufnr, "Goto Declaration")
 			lsp_map("<C-j>", vim.diagnostic.goto_next, bufnr, "Move to the next diagnostic")
 			lsp_map("gl", vim.diagnostic.open_float, bufnr, "Show line diagnostics")
-			lsp_map("K", vim.lsp.buf.hover, bufnr, "Hover Doc")
 			lsp_map("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 			lsp_map("gd", function()
 				require("telescope.builtin").lsp_definitions({ reuse_win = true })
@@ -58,11 +57,32 @@ return {
 			end, { expr = true })
 			-- lsp_map("gr", ":IncRename " .. vim.fn.expand("<cword>"), bufnr, "Rename")
 			lsp_map("<leader>ca", vim.lsp.buf.code_action, bufnr, "Code actions")
+
+			if client.supports_method("textDocument/inlayHint") then
+				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+			end
+
+			-- if client.supports_method("textDocument/documentHighlight") then
+			-- 	vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+			-- 	vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
+			-- 	vim.api.nvim_create_autocmd("CursorHold", {
+			-- 		callback = vim.lsp.buf.document_highlight(),
+			-- 		buffer = bufnr,
+			-- 		group = "lsp_document_highlight",
+			-- 		desc = "Document Highlight",
+			-- 	})
+			-- 	vim.api.nvim_create_autocmd("CursorMoved", {
+			-- 		callback = vim.lsp.buf.clear_references(),
+			-- 		buffer = bufnr,
+			-- 		group = "lsp_document_highlight",
+			-- 		desc = "Clear All the References",
+			-- 	})
+			-- end
 		end
 
 		local config = {
 			virtual_text = true,
-			update_in_insert = true,
+			update_in_insert = false,
 			underline = true,
 			severity_sort = true,
 			float = {
@@ -84,6 +104,14 @@ return {
 					},
 					workspace = { checkThirdParty = false },
 					telemetry = { enable = false },
+					hint = {
+						enable = true,
+						setType = false,
+						paramType = true,
+						paramName = "Disable",
+						semicolon = "Disable",
+						arrayIndex = "Disable",
+					},
 				},
 			},
 			vtsls = {},
@@ -113,10 +141,20 @@ return {
 			end,
 			["vtsls"] = function()
 				require("lspconfig").vtsls.setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
 					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 					settings = {
 						vtsls = {
 							tsserver = {
+								inlayHints = {
+									parameterNames = { enabled = "literals" },
+									parameterTypes = { enabled = true },
+									variableTypes = { enabled = true },
+									propertyDeclarationTypes = { enabled = true },
+									functionLikeReturnTypes = { enabled = true },
+									enumMemberValues = { enabled = true },
+								},
 								globalPlugins = {
 									{
 										name = "@vue/typescript-plugin",
