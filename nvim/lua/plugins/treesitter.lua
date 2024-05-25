@@ -6,14 +6,10 @@ return {
 		require("lazy.core.loader").add_to_rtp(plugin)
 		require("nvim-treesitter.query_predicates")
 	end,
-	dependencies = {
-		"windwp/nvim-ts-autotag",
-	},
+	cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 	opts = {
 		highlight = { enable = true },
 		indent = { enable = true },
-		autotag = { enable = true },
-
 		ensure_installed = {
 			"lua",
 			"python",
