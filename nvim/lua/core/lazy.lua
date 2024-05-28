@@ -32,9 +32,9 @@ lazy.setup({
 	ui = {
 		icons = {
 			--   lazy = "󰂠 ",
-			ft = "",
-			loaded = "",
-			not_loaded = "",
+			ft = " ",
+			loaded = " ",
+			not_loaded = " ",
 		},
 	},
 	defaults = {
