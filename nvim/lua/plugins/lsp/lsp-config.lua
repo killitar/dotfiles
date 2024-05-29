@@ -30,6 +30,7 @@ return {
 				},
 			},
 		})
+		-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
 		require("neodev").setup()
 
 		local mason_lspconfig = require("mason-lspconfig")
@@ -101,6 +102,9 @@ return {
 				Lua = {
 					diagnostics = {
 						globals = { "vim" },
+					},
+					completion = {
+						callSnippet = "Replace",
 					},
 					workspace = { checkThirdParty = false },
 					telemetry = { enable = false },
