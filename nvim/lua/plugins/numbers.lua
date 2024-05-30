@@ -8,6 +8,7 @@ return {
 			"mason",
 			"lazy",
 			"starter",
+			"minifiles",
 		},
 	},
 }
