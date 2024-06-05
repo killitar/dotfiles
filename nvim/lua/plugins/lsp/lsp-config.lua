@@ -11,7 +11,6 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		{ "smjonas/inc-rename.nvim", cmd = "IncRename", opts = {} },
-		{ "folke/neodev.nvim", opts = {} },
 		-- { "pmizio/typescript-tools.nvim", opts = {} },
 	},
 	config = function()
@@ -30,9 +29,6 @@ return {
 				},
 			},
 		})
-		-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-		require("neodev").setup()
-
 		local mason_lspconfig = require("mason-lspconfig")
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
