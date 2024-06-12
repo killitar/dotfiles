@@ -4,49 +4,38 @@ return {
 	event = "InsertEnter",
 	dependencies = {
 		{
-			"L3MON4D3/LuaSnip",
-			dependencies = {
-				"rafamadriz/friendly-snippets",
-				"saadparwaiz1/cmp_luasnip",
+			"garymjr/nvim-snippets",
+			dependencies = { "rafamadriz/friendly-snippets" },
+			opts = {
+				friendly_snippets = true,
 			},
-			config = function()
-				require("luasnip.loaders.from_vscode").lazy_load()
-			end,
 		},
-		{
-			"Exafunction/codeium.nvim",
-			event = { "BufRead", "BufNewFile" },
-			opts = true,
-		},
+		{ "Exafunction/codeium.nvim", opts = true },
 
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
+		"folke/lazydev.nvim",
 		"lukas-reineke/cmp-under-comparator",
 	},
 	config = function()
 		local cmp = require("cmp")
-		local luasnip = require("luasnip")
 		local icons = {
 			kind = require("helpers.icons").get("kind", true),
 			type = require("helpers.icons").get("type"),
 			cmp = require("helpers.icons").get("cmp"),
 		}
 
-		local check_backspace = function()
-			local col = vim.fn.col(".") - 1
-			return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+		local has_words_before = function()
+			unpack = unpack or table.unpack
+			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 		end
 
 		vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 		vim.opt.shortmess:append("c")
 
 		cmp.setup({
-			snippet = {
-				expand = function(args)
-					luasnip.lsp_expand(args.body)
-				end,
-			},
 			experimental = {
 				ghost_text = {
 					hl_group = "CmpGhostText",
@@ -127,12 +116,12 @@ return {
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-					elseif luasnip.expandable() then
-						luasnip.expand()
-					elseif luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
-					elseif check_backspace() then
-						fallback()
+					elseif vim.snippet.active({ direction = 1 }) then
+						vim.schedule(function()
+							vim.snippet.jump(1)
+						end)
+					elseif has_words_before() then
+						cmp.complete()
 					else
 						fallback()
 					end
@@ -143,8 +132,10 @@ return {
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif luasnip.jumpable(-1) then
-						luasnip.jump(-1)
+					elseif vim.snippet.active({ direction = -1 }) then
+						vim.schedule(function()
+							vim.snippet.jump(-1)
+						end)
 					else
 						fallback()
 					end
@@ -164,15 +155,16 @@ return {
 				end,
 			},
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "codeium" },
 				{
-					name = "luasnip",
+					name = "snippets",
 					entry_filter = function()
 						local context = require("cmp.config.context")
 						return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
 					end,
 				},
+				{ name = "nvim_lsp" },
+				{ name = "codeium" },
+				{ name = "lazydev", group_index = 0 },
 			}, {
 				{ name = "path" },
 			}, {
