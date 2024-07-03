@@ -7,7 +7,7 @@ return {
 			"neo-tree",
 			"mason",
 			"lazy",
-			"starter",
+			"ministarter",
 			"minifiles",
 		},
 	},

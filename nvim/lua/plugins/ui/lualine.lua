@@ -24,7 +24,7 @@ return {
 				section_separators = { left = "", right = "" },
 				component_separators = { left = "", right = "" },
 				globalstatus = true,
-				disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
+				disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
 			},
 			sections = {
 				lualine_a = { "mode" },

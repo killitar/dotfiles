@@ -6,7 +6,7 @@ return {
 			pattern = {
 				"alpha",
 				"dashboard",
-				"starter",
+				"ministarter",
 			},
 			callback = function()
 				vim.b.minianimate_disable = true

@@ -10,7 +10,7 @@ return {
 				"help",
 				"alpha",
 				"dashboard",
-				"starter",
+				"ministarter",
 				"neo-tree",
 				"Trouble",
 				"trouble",
