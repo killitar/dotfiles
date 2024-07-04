@@ -59,22 +59,26 @@ return {
 				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			end
 
-			-- if client.supports_method("textDocument/documentHighlight") then
-			-- 	vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-			-- 	vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
-			-- 	vim.api.nvim_create_autocmd("CursorHold", {
-			-- 		callback = vim.lsp.buf.document_highlight(),
-			-- 		buffer = bufnr,
-			-- 		group = "lsp_document_highlight",
-			-- 		desc = "Document Highlight",
-			-- 	})
-			-- 	vim.api.nvim_create_autocmd("CursorMoved", {
-			-- 		callback = vim.lsp.buf.clear_references(),
-			-- 		buffer = bufnr,
-			-- 		group = "lsp_document_highlight",
-			-- 		desc = "Clear All the References",
-			-- 	})
-			-- end
+			if client.supports_method("textDocument/documentHighlight") then
+				vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+				vim.api.nvim_clear_autocmds({ buffer = bufnr, group = "lsp_document_highlight" })
+				vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+					callback = function()
+						vim.lsp.buf.document_highlight()
+					end,
+					buffer = bufnr,
+					group = "lsp_document_highlight",
+					desc = "Document Highlight",
+				})
+				vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+					callback = function()
+						vim.lsp.buf.clear_references()
+					end,
+					buffer = bufnr,
+					group = "lsp_document_highlight",
+					desc = "Clear All the References",
+				})
+			end
 		end
 
 		local config = {
@@ -136,7 +140,7 @@ return {
 				require("lspconfig")[server_name].setup({
 					capabilities = capabilities,
 					on_attach = on_attach,
-					settings = servers[server_name],
+					-- settings = servers[server_name],
 				})
 			end,
 			["vtsls"] = function()
