@@ -1,6 +1,5 @@
 return {
 	"RRethy/vim-illuminate",
-	enabled = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	keys = {
 		{ "]]", desc = "Next Reference" },
@@ -16,7 +15,7 @@ return {
 			"help",
 			"alpha",
 			"dashboard",
-			"starter",
+			"ministarter",
 			"neo-tree",
 			"Trouble",
 			"trouble",
