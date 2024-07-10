@@ -3,5 +3,12 @@ return {
 	event = "BufReadPre",
 	opts = {
 		enable_tailwind = true,
+		exclude_filetypes = {
+			"Telescope",
+			"lazy",
+			"mason",
+			"lazyterm",
+			"toggleterm",
+		},
 	},
 }
