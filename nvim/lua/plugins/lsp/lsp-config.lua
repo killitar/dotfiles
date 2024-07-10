@@ -118,7 +118,6 @@ return {
 					},
 				},
 			},
-			vtsls = {},
 			pyright = {},
 
 			volar = {},
@@ -140,39 +139,6 @@ return {
 				require("lspconfig")[server_name].setup({
 					capabilities = capabilities,
 					on_attach = on_attach,
-					-- settings = servers[server_name],
-				})
-			end,
-			["vtsls"] = function()
-				require("lspconfig").vtsls.setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
-					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-					settings = {
-						vtsls = {
-							tsserver = {
-								inlayHints = {
-									parameterNames = { enabled = "literals" },
-									parameterTypes = { enabled = true },
-									variableTypes = { enabled = true },
-									propertyDeclarationTypes = { enabled = true },
-									functionLikeReturnTypes = { enabled = true },
-									enumMemberValues = { enabled = true },
-								},
-								globalPlugins = {
-									{
-										name = "@vue/typescript-plugin",
-										location = require("mason-registry")
-											.get_package("vue-language-server")
-											:get_install_path() .. "/node_modules/@vue/language-server",
-										languages = { "vue" },
-										configNamespace = "typescript",
-										enableForWorkspaceTypeScriptVersions = true,
-									},
-								},
-							},
-						},
-					},
 				})
 			end,
 		})
