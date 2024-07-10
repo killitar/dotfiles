@@ -82,7 +82,7 @@ return {
 		end
 
 		local config = {
-			virtual_text = true,
+			virtual_text = false, -- false because i used inline-diagnostic plugin
 			update_in_insert = false,
 			underline = true,
 			severity_sort = true,
