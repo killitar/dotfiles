@@ -10,7 +10,6 @@ return {
 				friendly_snippets = true,
 			},
 		},
-		{ "Exafunction/codeium.nvim", opts = true },
 
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
@@ -163,7 +162,6 @@ return {
 					end,
 				},
 				{ name = "nvim_lsp" },
-				{ name = "codeium" },
 				{ name = "lazydev", group_index = 0 },
 			}, {
 				{ name = "path" },
