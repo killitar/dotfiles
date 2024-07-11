@@ -64,7 +64,13 @@ return {
 			--   disallow_prefix_unmatching = true,
 			-- },
 
-			view = { entries = { name = "custom", selection_order = "top_down" } },
+			view = {
+				entries = {
+					name = "custom",
+					selection_order = "top_down",
+					follow_cursor = true,
+				},
+			},
 
 			window = {
 				documentation = {
