@@ -98,6 +98,7 @@ return {
 					end
 					return new_trigger_characters
 				end,
+				keyword_length = 2,
 			},
 			confirm_opts = {
 				behavior = cmp.ConfirmBehavior.Replace,
