@@ -11,7 +11,6 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		{ "smjonas/inc-rename.nvim", cmd = "IncRename", opts = {} },
-		-- { "pmizio/typescript-tools.nvim", opts = {} },
 	},
 	config = function()
 		local icons = {
@@ -82,7 +81,7 @@ return {
 		end
 
 		local config = {
-			virtual_text = false, -- false because i used inline-diagnostic plugin
+			virtual_text = false, -- false because used inline-diagnostic plugin
 			update_in_insert = false,
 			underline = true,
 			severity_sort = true,
