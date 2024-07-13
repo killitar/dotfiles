@@ -36,12 +36,13 @@ lazy.setup({
 			loaded = " ",
 			not_loaded = " ",
 		},
+		backdrop = 100,
 	},
 	defaults = {
 		lazy = true,
 		version = false,
 	},
-	install = { colorscheme = { "solarized-osaka" } },
+	install = { colorscheme = { "neomodern" } },
 	checker = {
 		enabled = true,
 		notify = false,
@@ -58,4 +59,4 @@ lazy.setup({
 
 require("helpers.keys").map("n", "<leader>L", lazy.show, "Show Lazy")
 
-vim.cmd.colorscheme("solarized-osaka")
+vim.cmd.colorscheme("neomodern")
