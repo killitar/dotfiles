@@ -24,6 +24,7 @@ return {
 			"sql",
 			"gitignore",
 			"json",
+			"yaml",
 			"html",
 			"markdown",
 			"markdown_inline",
