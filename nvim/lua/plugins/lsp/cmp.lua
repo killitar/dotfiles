@@ -13,7 +13,9 @@ return {
 
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
+		{
+			url = "https://codeberg.org/FelipeLema/cmp-async-path.git",
+		},
 		"folke/lazydev.nvim",
 		"lukas-reineke/cmp-under-comparator",
 	},
@@ -171,7 +173,7 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "lazydev", group_index = 0 },
 			}, {
-				{ name = "path" },
+				{ name = "async_path" },
 			}, {
 				{
 					name = "buffer",
