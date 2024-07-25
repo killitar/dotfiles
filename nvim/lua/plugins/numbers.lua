@@ -9,6 +9,7 @@ return {
 			"lazy",
 			"ministarter",
 			"minifiles",
+			"TelescopePrompt",
 		},
 	},
 }
