@@ -2,14 +2,14 @@ return {
 	"b0o/incline.nvim",
 	event = "BufReadPre",
 	opts = function()
-		-- local colors = require("solarized-osaka.colors").setup()
+		-- local colors = require("obscure.palettes").get_palette("obscure")
 		local devicons = require("nvim-web-devicons")
 
 		return {
 			highlight = {
 				groups = {
-					-- IncLineNormal = { guibg = colors., guifg = colors.base04 },
-					-- IncLineNormalNC = { guibg = colors.base03, guifg = colors.violet500 },
+					-- IncLineNormal = { guibg = colors.black, guifg = colors.yellow },
+					-- IncLineNormalNC = { guibg = colors.fg, guifg = colors.red },
 				},
 			},
 			window = { margin = { vertical = 0, horizontal = 1 } },
