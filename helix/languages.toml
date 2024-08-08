@@ -93,3 +93,9 @@ name = "json"
 formatter = { command = "prettier", args = [ "--parser", "json" ] }
 # formatter = { command = "dprint", args = [ "fmt", "--stdin", "json" ] }
 auto-format = true
+
+[[language]]
+name = "prisma"
+auto-format = true
+formatter = { command = "prisma" }
+language-servers = ["prisma-language-server"]
