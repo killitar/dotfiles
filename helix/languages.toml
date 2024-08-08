@@ -80,13 +80,13 @@ auto-format = true
 name = "vue"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "vue"] }
-language-servers = ["typescript-language-server", "emmet-lsp"]
+language-servers = ["typescript-language-server", "eslint", "emmet-lsp"]
 
 [[language]]
 name = "astro"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "astro"] }
-language-servers = [ "astro-ls", "emmet-lsp" ]
+language-servers = [ "astro-ls", "eslint", "emmet-lsp" ]
 
 [[language]]
 name = "json"
