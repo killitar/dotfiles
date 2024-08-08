@@ -21,11 +21,6 @@ return {
 	},
 	config = function()
 		local cmp = require("cmp")
-		local icons = {
-			kind = require("helpers.icons").get("kind", true),
-			type = require("helpers.icons").get("type"),
-			cmp = require("helpers.icons").get("cmp"),
-		}
 
 		local has_words_before = function()
 			unpack = unpack or table.unpack
@@ -45,26 +40,24 @@ return {
 			sorting = {
 				priority_weight = 1,
 				comparators = {
-					cmp.config.compare.scopes,
-					cmp.config.compare.locality,
-					require("cmp-under-comparator").under,
-					cmp.config.compare.recently_used,
-
-					cmp.config.compare.score,
 					cmp.config.compare.offset,
-					-- compare.sort_text,
-					-- compare.length,
-					-- compare.order,
+					cmp.config.compare.exact,
+					cmp.config.compare.score,
+					require("cmp-under-comparator").under,
+					cmp.config.compare.kind,
+					cmp.config.compare.recently_used,
+					cmp.config.compare.locality,
 				},
 			},
 
-			-- matching = {
-			--   disallow_fuzzy_matching = true,
-			--   disallow_fullfuzzy_matching = true,
-			--   disallow_partial_fuzzy_matching = true,
-			--   disallow_partial_matching = false,
-			--   disallow_prefix_unmatching = true,
-			-- },
+			matching = {
+				disallow_fuzzy_matching = true,
+				disallow_fullfuzzy_matching = true,
+				disallow_partial_fuzzy_matching = true,
+				disallow_partial_matching = false,
+				disallow_prefix_unmatching = true,
+				disallow_symbol_nonprefix_matching = false,
+			},
 
 			view = {
 				entries = {
@@ -156,27 +149,30 @@ return {
 				fields = { "abbr", "kind", "menu" },
 				expandable_indicator = true,
 				format = function(_, item)
-					local icon = icons.kind[item.kind]
+					local mini_icon = require("mini.icons").get("lsp", item.kind)
 
-					item.kind = string.format("%s %s", icon, item.kind or "")
+					item.kind = string.format("%s %s", mini_icon, item.kind or "")
 					return item
 				end,
 			},
 			sources = cmp.config.sources({
 				{
 					name = "snippets",
+					max_item_count = 3,
 					entry_filter = function()
 						local context = require("cmp.config.context")
 						return not context.in_treesitter_capture("string") and not context.in_syntax_group("String")
 					end,
 				},
-				{ name = "nvim_lsp" },
-				{ name = "lazydev", group_index = 0 },
+				{ name = "nvim_lsp", max_item_count = 5 },
+				{ name = "lazydev", keyword_length = 2, group_index = 0 },
 			}, {
 				{ name = "async_path" },
 			}, {
 				{
 					name = "buffer",
+					keyword_length = 3,
+					max_item_count = 5,
 					option = {
 						get_bufnrs = function()
 							local bufs = {}
