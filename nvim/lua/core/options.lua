@@ -7,6 +7,9 @@ vim.g.deprecation_warnings = false -- hide deprecation_warnings
 --clipboard
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 
+-- True color support
+opt.termguicolors = true
+
 opt.list = false --set true if you want visible whitespace characters
 
 --File encoding
