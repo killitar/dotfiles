@@ -42,7 +42,7 @@ lazy.setup({
 		lazy = true,
 		version = false,
 	},
-	install = { colorscheme = { "neomodern" } },
+	install = { colorscheme = { "obscure" } },
 	checker = {
 		enabled = true,
 		notify = false,
@@ -59,4 +59,4 @@ lazy.setup({
 
 require("helpers.keys").map("n", "<leader>L", lazy.show, "Show Lazy")
 
-vim.cmd.colorscheme("neomodern")
+vim.cmd.colorscheme("obscure")
