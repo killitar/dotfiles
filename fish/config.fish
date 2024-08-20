@@ -12,6 +12,7 @@ alias ll="ls -l"
 alias lla="ll -A"
 alias g=git
 alias vim=nvim
+alias hx=helix
 
 if type -q eza
   alias ll "eza -l -g --icons"
