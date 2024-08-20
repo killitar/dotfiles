@@ -23,6 +23,16 @@ alias ll="eza -l -g --icons"
 alias lla="ll -a"
 set -gx EDITOR nvim
 
+# yazi
+function yy
+  set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
+end
+
 # pnpm
 set -gx PNPM_HOME "/home/kilitar/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
