@@ -4,6 +4,7 @@ return {
 	enabled = true,
 	config = function()
 		require("indentmini").setup({
+			only_current = true,
 			minlevel = 2,
 			char = "╎",
 		})
