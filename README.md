@@ -1,10 +1,10 @@
 # Miroslav's dotfiles
 
-This is my dotfiles 
+This is my dotfiles
 
 ## Neovim setup
 
-![nvim screenshot](./images/screenshot-neovim.png)
+![nvim screenshot](https://raw.githubusercontent.com/killitar/dotfiles/main/.github/images/nvim.png)
 
 ### Requirements
 
@@ -19,7 +19,7 @@ This is my dotfiles
 
 ## Shell setup (macOS & Linux)
 
-![shell screenshot](./images/screenshot-shell.png)
+![shell screenshot](https://raw.githubusercontent.com/killitar/dotfiles/main/.github/images/shell.png)
 
 - [Fish shell](https://fishshell.com/)
 - [Fisher](https://github.com/jorgebucaran/fisher) - Plugin manager
