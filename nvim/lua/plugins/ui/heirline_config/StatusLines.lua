@@ -48,7 +48,7 @@ function M.get(colors, separator, icons)
 				hl = { fg = colors.purple, bg = colors.bg_dark },
 			},
 			{
-				provider = "ЁЯТд lazy ",
+				provider = "󰂠 lazy ",
 				hl = { fg = colors.bg_dark, bg = colors.purple, bold = true },
 			},
 			{
