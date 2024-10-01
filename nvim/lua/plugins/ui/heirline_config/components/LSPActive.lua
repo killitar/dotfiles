@@ -1,6 +1,7 @@
 local M = {}
+local conditions = require("heirline.conditions")
 
-function M.get(colors, separator, conditions)
+function M.get(colors, separator)
 	return {
 		update = {
 			"LspAttach",

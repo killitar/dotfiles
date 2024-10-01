@@ -1,6 +1,7 @@
 local M = {}
+local conditions = require("heirline.conditions")
 
-function M.get(colors, separator, icons, conditions)
+function M.get(colors, separator, icons)
 	return {
 		condition = conditions.has_diagnostics(),
 		init = function(self)
