@@ -4,6 +4,27 @@ local map = require("helpers.keys").map
 map("n", "ss", ":split<Return><C-w>w", "Split Window")
 map("n", "sv", ":vsplit<Return><C-w>w", "Split Window")
 
+-- Tabs
+map("n", "<leader><tab><tab>", "<cmd>:tabedit<cr>", "New Tab")
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", "Close Tab")
+map("n", "<leader><tab>]", "<cmd>tabnext<cr>", "Next Tab")
+map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", "Previous Tab")
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", "First Tab")
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", "Last Tab")
+map("n", "<leader><tab>o", "<cmd>tabonly<cr>", "Close Other Tabs")
+
+-- Buffers
+map("n", "<S-h>", "<cmd>bprevious<cr>", "Prev Buffer")
+map("n", "<S-l>", "<cmd>bnext<cr>", "Next Buffer")
+map("n", "]b", "<cmd>bnext<cr>", "Next Buffer")
+map("n", "[b", "<cmd>bprevious<cr>", "Prev Buffer")
+map("n", "<leader>bb", "<cmd>e #<cr>", "Switch to Other Buffer")
+map("n", "<leader>`", "<cmd>e #<cr>", "Switch to Other Buffer")
+map("n", "<leader>bD", "<cmd>:bd<cr>", "Delete Buffer and Window")
+
+-- New File
+map("n", "<leader>fn", "<cmd>enew<cr>", "New File")
+
 -- Better window navigation
 map("n", "<C-h>", "<C-w><C-h>", "Navigate windows to the left")
 map("n", "<C-j>", "<C-w><C-j>", "Navigate windows down")
@@ -25,10 +46,10 @@ map("n", "<S-Up>", "<C-w><S-k>", "Move window up")
 map("n", "<S-Right>", "<C-w><S-l>", "Move window to the right")
 
 -- Resize with arrows
-map("n", "<C-Up>", ":resize +2<CR>")
-map("n", "<C-Down>", ":resize -2<CR>")
-map("n", "<C-Right>", ":vertical resize +2<CR>")
-map("n", "<C-Left>", ":vertical resize -2<CR>")
+map("n", "<C-Up>", ":resize +2<CR>", "Increase Window Height")
+map("n", "<C-Down>", ":resize -2<CR>", "Decrease Window Height")
+map("n", "<C-Right>", ":vertical resize +2<CR>", "Increase Window Width")
+map("n", "<C-Left>", ":vertical resize -2<CR>", "Decrease Window Width")
 
 --Select all
 map("n", "<C-a>", "gg<S-v>G")
@@ -42,15 +63,25 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", "Escape and clear hlsearch")
 
 --Make 'x' key not copy to clipboard when depeting a character
 map({ "n", "v" }, "x", function()
-	if vim.fn.col(".") == 1 then
-		local line = vim.fn.getline(".")
-		if line:match("^%s*$") then
-			vim.api.nvim_feedkeys("dd", "n", false)
-			vim.api.nvim_feedkeys("$", "n", false)
-		else
-			vim.api.nvim_feedkeys('"_x', "n", false)
-		end
-	else
-		vim.api.nvim_feedkeys('"_x', "n", false)
-	end
+  if vim.fn.col(".") == 1 then
+    local line = vim.fn.getline(".")
+    if line:match("^%s*$") then
+      vim.api.nvim_feedkeys("dd", "n", false)
+      vim.api.nvim_feedkeys("$", "n", false)
+    else
+      vim.api.nvim_feedkeys('"_x', "n", false)
+    end
+  else
+    vim.api.nvim_feedkeys('"_x', "n", false)
+  end
 end, "Delete character without yanking it.")
+
+-- quit
+map("n", "<leader>qq", "<cmd>qa<cr>", "Quit All")
+
+-- highlights under cursor
+map("n", "<leader>ui", vim.show_pos, "Inspect Pos")
+map("n", "<leader>uI", "<cmd>InspectTree<cr>", "Inspect Tree")
+
+-- Lazy
+map("n", "<leader>l", "<cmd>Lazy<cr>", "Lazy")
