@@ -1,14 +1,42 @@
 return {
-	"nvimdev/indentmini.nvim",
-	event = "BufEnter",
-	enabled = true,
-	config = function()
-		require("indentmini").setup({
-			only_current = true,
-			minlevel = 2,
-			char = "╎",
-		})
-		vim.cmd("hi! link IndentLine IndentBlanklineChar")
-		vim.cmd("hi! link IndentLineCurrent IndentBlanklineContextChar")
-	end,
+  "nvimdev/indentmini.nvim",
+  event = { "BufReadPre", "BufNewFile" },
+  opts = {
+    char = "╎",
+    minlevel = 2,
+    exclude = {
+      "alpha",
+      "startify",
+      "dashboard",
+      "dotooagenda",
+      "log",
+      "fugitive",
+      "gitcommit",
+      "packer",
+      "vimwiki",
+      "markdown",
+      "ministarter",
+      "minifiles",
+      "json",
+      "txt",
+      "vista",
+      "help",
+      "lazy",
+      "lazyterm",
+      "mason",
+      "todoist",
+      "neo-tree",
+      "NvimTree",
+      "notify",
+      "peekaboo",
+      "git",
+      "toggleterm",
+      "Trouble",
+      "trouble",
+      "TelescopePrompt",
+      "undotree",
+      "flutterToolsOutline",
+      " ", -- for all buffers without a file type
+    },
+  },
 }
