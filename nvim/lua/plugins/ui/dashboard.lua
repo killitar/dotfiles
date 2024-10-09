@@ -54,7 +54,7 @@ return {
         footer = function()
           local stats = require("lazy").stats()
           local ms = math.floor(math.floor(stats.startuptime * 100 + 0.5) / 100)
-          local message = "⚡ Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms"
+          local message = "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. " ms"
 
           return {
             string.rep("─", 33),
