@@ -5,8 +5,13 @@ function M.get(colors, icons)
     condition = function(self)
       return not vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
     end,
+    static = {
+      close_icon = icons.ui.Close,
+    },
     {
-      provider = " " .. icons.ui.Close,
+      provider = function(self)
+        return " " .. self.close_icon
+      end,
       hl = function(self)
         if self.is_active then
           return { bg = colors.gray1, fg = colors.red }
