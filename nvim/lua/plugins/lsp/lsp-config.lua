@@ -10,7 +10,7 @@ return {
     },
     { "smjonas/inc-rename.nvim", cmd = "IncRename", opts = {} },
     "williamboman/mason-lspconfig.nvim",
-    "hrsh7th/cmp-nvim-lsp",
+    -- "hrsh7th/cmp-nvim-lsp",
   },
   config = function()
     local icons = {
@@ -31,7 +31,7 @@ return {
     local mason_lspconfig = require("mason-lspconfig")
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
     local on_attach = function(client, bufnr)
       local lsp_map = require("helpers.keys").lsp_map
@@ -79,7 +79,7 @@ return {
     end
 
     local config = {
-      virtual_text = false, -- false because used inline-diagnostic plugin
+      virtual_text = true, -- false because used inline-diagnostic plugin
       update_in_insert = false,
       underline = true,
       severity_sort = true,
