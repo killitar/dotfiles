@@ -199,7 +199,7 @@ return {
     local buttons = {
       type = "group",
       val = {
-        { type = "text",    val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
+        { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
         { type = "padding", val = 1 },
         dashboard.button("f", "󰍉 " .. " Find file", ":Telescope find_files <CR>"),
         dashboard.button("F", "󱎸" .. "  Find text", ":Telescope live_grep <CR>"),
