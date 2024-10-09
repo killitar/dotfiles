@@ -46,6 +46,15 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
+-- Hide tildas on dashboard screen
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  desc = "Hide tildas on dashboard screen",
+  pattern = { "dashboard" },
+  callback = function()
+    vim.opt_local.fillchars:append({ eob = " " })
+  end,
+})
+
 -- Auto close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Auto close some filetypes with <q>",
