@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
--- auto close some filetypes with <q>
+-- Auto close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Auto close some filetypes with <q>",
   pattern = {
