@@ -14,9 +14,9 @@ function M.get(colors, icons)
       end,
       hl = function(self)
         if self.is_active then
-          return { bg = colors.gray1, fg = colors.red }
+          return { fg = colors.red, bg = colors.gray1 }
         else
-          return { bg = colors.bg, fg = colors.subtext4 }
+          return { fg = colors.subtext4, bg = colors.bg }
         end
       end,
       on_click = {

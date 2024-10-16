@@ -4,8 +4,10 @@ local utils = require("heirline.utils")
 function M.get(colors, separator, icons)
   local FileIcon = require("plugins.ui.heirline_config.components_statusline.FileIcon").get()
   local TablineFileName = require("plugins.ui.heirline_config.components_tabline.TablineFileName").get()
-  local TablineCloseButton =
-    require("plugins.ui.heirline_config.components_tabline.TablineCloseButton").get(colors, icons)
+  local BufferCloseButton =
+    require("plugins.ui.heirline_config.components_tabline.BufferCloseButton").get(colors, icons)
+  local BufferCloseAllButton =
+    require("plugins.ui.heirline_config.components_tabline.BufferCloseAllButton").get(colors, icons)
   local TablineFileFlags = require("plugins.ui.heirline_config.components_tabline.TablineFileFlags").get(colors, icons)
   local TabpageClose = require("plugins.ui.heirline_config.components_tabline.TabpageClose").get(colors, icons)
 
@@ -60,13 +62,13 @@ function M.get(colors, separator, icons)
       end,
     },
     TablineFileNameBlock,
-    TablineCloseButton,
+    BufferCloseButton,
   }
 
   local BufferLine = utils.make_buflist(
     TablineBufferBlock,
-    { provider = icons.ui.Left .. " ", hl = { fg = colors.subtext3 } }, -- left truncation, optional (defaults to "<")
-    { provider = " " .. icons.ui.Right, hl = { fg = colors.subtext3 } }, -- right trunctation, also optional (defaults to ...... yep, ">")
+    { provider = icons.ui.Left .. " ", hl = { fg = colors.subtext3 } }, -- left truncation
+    { provider = " " .. icons.ui.Right, hl = { fg = colors.subtext3 } }, -- right trunctation
     function()
       return buflist_cache
     end,
@@ -80,11 +82,12 @@ function M.get(colors, separator, icons)
     end,
     hl = function(self)
       if not self.is_active then
-        return "TabLine"
+        return { fg = colors.subtext4, bg = colors.gray1 }
       else
-        return "TabLineSel"
+        return { fg = colors.bg_dark, bg = colors.blue }
       end
     end,
+    TabpageClose,
   }
 
   local TabPages = {
@@ -93,7 +96,6 @@ function M.get(colors, separator, icons)
     end,
     { provider = "%=" },
     utils.make_tablist(Tabpage),
-    TabpageClose,
   }
   local TabLineOffset = {
     condition = function(self)
@@ -128,6 +130,7 @@ function M.get(colors, separator, icons)
     BufferLine,
     { provider = "%=" },
     TabPages,
+    BufferCloseAllButton,
     hl = { bg = colors.bg_dark },
   }
 
