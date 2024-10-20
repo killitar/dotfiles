@@ -1,0 +1,11 @@
+node_modules
+*.log
+/.repro
+/.tests
+/build
+/debug
+/doc/tags
+/fish/functions
+/fish/fish_variables
+foo.*
+tt.*
