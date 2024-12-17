@@ -48,6 +48,7 @@ local data = {
     Circle_alt = "",
     Close = "󰅖",
     Close_alt = "",
+    Close_circle = "󰅙",
     CloudDownload = "",
     Comment = "󰅺",
     CodeAction = "󰌵",

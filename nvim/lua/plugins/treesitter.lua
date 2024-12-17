@@ -12,7 +12,6 @@ return {
     indent = { enable = true },
     ensure_installed = {
       "lua",
-      "python",
       "vim",
       "vimdoc",
       "regex",
@@ -22,6 +21,7 @@ return {
       "css",
       "scss",
       "sql",
+      "fish",
       "gitignore",
       "json",
       "yaml",

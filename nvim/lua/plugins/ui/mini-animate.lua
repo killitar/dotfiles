@@ -1,6 +1,7 @@
 return {
   "echasnovski/mini.animate",
   event = "VeryLazy",
+  enabled = false,
   init = function()
     vim.api.nvim_create_autocmd("FileType", {
       pattern = {

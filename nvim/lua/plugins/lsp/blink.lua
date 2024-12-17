@@ -4,26 +4,35 @@ return {
   dependencies = "rafamadriz/friendly-snippets",
   version = "v0.*",
   opts = {
-    nerd_font_variant = "normal",
-    windows = {
-      autocomplete = {
+    appearance = {
+      nerd_font_variant = "normal",
+    },
+    keymap = { preset = "super-tab" },
+    completion = {
+      menu = {
         border = "rounded",
-        draw = "reversed",
+        draw = {
+          columns = { { "label", gap = 1 }, { "kind_icon", "kind" } },
+        },
       },
       documentation = {
-        border = "rounded",
+        window = {
+          border = "rounded",
+        },
       },
-      signature_help = {
-        border = "rounded",
+      ghost_text = {
+        enabled = true,
       },
     },
     accept = {
       create_undo_point = false,
-      -- experimental auto-brackets support
       auto_brackets = { enabled = true },
     },
-
-    -- experimental signature help support
     trigger = { signature_help = { enabled = true } },
+    signature = {
+      window = {
+        border = "rounded",
+      },
+    },
   },
 }

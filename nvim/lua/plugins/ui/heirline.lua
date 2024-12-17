@@ -1,8 +1,9 @@
 return {
   "rebelot/heirline.nvim",
   event = "UIEnter",
+  enabled = false,
   config = function()
-    local colors = require("obscure.palettes").get_palette("obscure")
+    local colors = require 'yugen.palette'
     local icons = {
       diagnostics = require("helpers.icons").get("diagnostics", true),
       git = require("helpers.icons").get("git", true),

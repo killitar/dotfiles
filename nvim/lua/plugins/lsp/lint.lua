@@ -13,7 +13,6 @@ return {
       astro = { "eslint_d" },
       svelte = { "eslint_d" },
       vue = { "eslint_d" },
-      python = { "ruff", "mypy" },
     }
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertEnter", "InsertLeave", "TextChanged" }, {

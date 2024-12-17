@@ -31,7 +31,7 @@ return {
     local mason_lspconfig = require("mason-lspconfig")
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    -- capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
     local on_attach = function(client, bufnr)
       local lsp_map = require("helpers.keys").lsp_map
@@ -95,7 +95,7 @@ return {
     vim.diagnostic.config(config)
 
     local servers = {
-      pyright = {},
+      lua_ls = {},
       volar = {},
       svelte = {},
       astro = {},

@@ -15,7 +15,6 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "isort", "black", stop_after_first = true },
       javascript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
       javascriptreact = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
       typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },

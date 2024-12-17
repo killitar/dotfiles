@@ -1,6 +1,6 @@
 return {
   "glepnir/dashboard-nvim",
-  event = "VimEnter",
+  lazy = false,
   opts = function()
     local logo = [[
 ███    ██ ██    ██ ██ ███    ███

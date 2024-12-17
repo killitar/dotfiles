@@ -32,8 +32,8 @@ lazy.setup({
   ui = {
     icons = {
       ft = " ",
-      loaded = " ",
-      not_loaded = " ",
+      loaded = "●",
+      not_loaded = "○",
     },
     backdrop = 100,
   },
@@ -56,4 +56,4 @@ lazy.setup({
   },
 })
 
-vim.cmd.colorscheme("obscure")
+vim.cmd.colorscheme("catppuccin-mocha")
